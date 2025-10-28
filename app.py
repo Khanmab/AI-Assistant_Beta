@@ -89,7 +89,7 @@ def send_email(subject: str, message: str):
         },
         json={
             "personalizations": [{"to": [{"email": OWNER_EMAIL}]}],
-            "from": {"email": "assistant@insightxai.com"},
+            "from": {"email": os.getenv("SENDER_FROM")},
             "subject": subject,
             "content": [{"type": "text/plain", "value": message}]
         }
