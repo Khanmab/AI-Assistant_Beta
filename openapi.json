@@ -1,0 +1,122 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Roti Boti Assistant Hooks",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://<service-name>.onrender.com"
+    }
+  ],
+  "paths": {
+    "/hooks/reservation": {
+      "post": {
+        "operationId": "LogReservationRequest",
+        "summary": "Append a reservation or catering request",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "party_size",
+                  "date",
+                  "time",
+                  "phone"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "party_size": {
+                    "type": "integer"
+                  },
+                  "date": {
+                    "type": "string",
+                    "description": "YYYY-MM-DD"
+                  },
+                  "time": {
+                    "type": "string",
+                    "description": "HH:MM"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "notes": {
+                    "type": "string"
+                  },
+                  "request_type": {
+                    "type": "string",
+                    "enum": [
+                      "reservation",
+                      "catering"
+                    ],
+                    "default": "reservation"
+                  },
+                  "language": {
+                    "type": "string",
+                    "enum": [
+                      "en",
+                      "ur"
+                    ],
+                    "default": "en"
+                  },
+                  "source": {
+                    "type": "string",
+                    "enum": [
+                      "gpt",
+                      "web",
+                      "whatsapp"
+                    ],
+                    "default": "gpt"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Logged"
+          }
+        }
+      }
+    },
+    "/hooks/notify": {
+      "post": {
+        "operationId": "SendOwnerEmail",
+        "summary": "Send an email to the owner",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "subject",
+                  "message"
+                ],
+                "properties": {
+                  "subject": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sent"
+          }
+        }
+      }
+    }
+  }
+}
