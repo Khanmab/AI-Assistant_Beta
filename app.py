@@ -12,6 +12,7 @@ CREDS_PATH = os.getenv("GOOGLE_CREDS_JSON")
 SHEET_URL = os.getenv("SHEET_URL")
 SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
 OWNER_EMAIL = os.getenv("OWNER_EMAIL", "")
+SENDER_FROM = os.getenv("SENDER_FROM", "")
 
 gc = None
 sh = None
